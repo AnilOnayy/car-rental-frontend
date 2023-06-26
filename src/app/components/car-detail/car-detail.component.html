@@ -1,0 +1,70 @@
+<h2 class="mb-4 fw-bold">Car Detail</h2>
+
+<div *ngIf="!dataLoaded">
+
+<div class="row placeholder-glow">
+  <div class="row">
+    <div class="placeholder col-3" style="height:300px"></div>
+    <div class="placeholder col-3" style="height:300px"></div>
+    <div class="placeholder col-3" style="height:300px"></div>
+    <div class="placeholder col-3" style="height:300px"></div>
+  </div>
+
+</div>
+
+  <p class="placeholder-glow">
+    <span class="placeholder col-4"></span>
+  </p>
+  <p class="placeholder-glow">
+    <span class="placeholder col-3"></span>
+  </p>
+
+  <p class="placeholder-glow">
+    <span class="placeholder col-4"></span>
+  </p>
+
+  <p class="placeholder-glow">
+    <span class="placeholder col-3"></span>
+  </p>
+</div>
+
+<div >
+  <div class="row" *ngIf="photosLoaded">
+  <h5 class="pb-1">Car Images</h5>
+  <hr>
+    <div class="col-4" *ngFor="let photo of photos">
+      <img src="{{photo.imagePath}} " class="detail-photo-grid" alt="Car">
+    </div>
+  </div>
+  <div class="row" *ngIf="dataLoaded">
+    <h5 class="pb-1">Car Detail</h5>
+    <hr>
+    <div class="col-md-5">
+
+      <table>
+        <tr>
+          <td>Car Name</td>
+          <td> : <b> {{carDetails.carName}} </b></td>
+        </tr>
+        <tr>
+          <td>Color</td>
+          <td> : <b> {{carDetails.colorName}} </b></td>
+        </tr>
+        <tr>
+          <td>Brand</td>
+          <td> : <b> {{carDetails.brandName}} </b></td>
+        </tr>
+        <tr>
+          <td>Model Year</td>
+          <td> : <b> {{carDetails.modelYear}} </b></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+

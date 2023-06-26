@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Car } from 'src/app/models/car/car';
-import { CarService } from 'src/app/services/car/car.service';
+import { ActivatedRoute } from '@angular/router';
+import { Car } from 'src/app/models/car';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car',
@@ -12,12 +13,27 @@ export class CarComponent implements OnInit{
   isLoaded = false;
   cars : Car[] = [];
 
-constructor(private carService :CarService) {
+constructor(private carService :CarService,private activatedRoute:ActivatedRoute) {
 
 }
 
 ngOnInit(): void {
-  this.getCars();
+
+    this.activatedRoute.params.subscribe(params => {
+      if(params["brandId"]!=null)
+      {
+        this.getCarsByBrand(params["brandId"]);
+      }
+      else if(params["colorId"]!=null)
+      {
+        this.getCarsByColor(params["colorId"]);
+
+      }
+      else{
+        this.getCars();
+
+      }
+    })
 }
 
 
@@ -27,5 +43,21 @@ getCars()
     this.cars = res.data;
     this.isLoaded = true;
   })
+}
+
+getCarsByColor(colorId:number)
+{
+  this.carService.getCarsByColor(colorId).subscribe(res => {
+    this.cars = res.data;
+    this.isLoaded = true;
+  });
+}
+
+getCarsByBrand(brandId:number)
+{
+  this.carService.getCarsByBrand(brandId).subscribe(res => {
+    this.cars = res.data;
+    this.isLoaded = true;
+  });
 }
 }

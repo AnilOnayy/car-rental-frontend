@@ -1,0 +1,14 @@
+.btn-dark{
+  background-color: black!important;
+}
+.bg-dark{
+  background-color: black!important;
+}
+
+.pointer-list{
+  cursor:pointer;
+}
+
+.list-group-item.active{
+  opacity:0.7;
+}

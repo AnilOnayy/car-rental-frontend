@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Color } from 'src/app/models/color/color';
-import { ColorService } from 'src/app/services/color/color.service';
+import { Color } from 'src/app/models/color';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
   selector: 'app-color',
@@ -13,6 +13,7 @@ export class ColorComponent implements OnInit {
 
   isLoaded = false;
   colors : Color[] = [];
+  currentColorId:number;
 
 constructor(private colorService : ColorService) {
 
@@ -29,5 +30,16 @@ getColors()
     this.isLoaded = true;
   })
 }
+
+isCurrentColor(colorId:number)
+{
+  return this.currentColorId==colorId;
+}
+
+setCurrentColor(colorId:number)
+{
+  this.currentColorId = colorId;
+}
+
 
 }

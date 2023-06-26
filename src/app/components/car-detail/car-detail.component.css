@@ -1,0 +1,11 @@
+table td,table td b{
+  padding:5px;
+  font-size:1.4rem;
+}
+
+.detail-photo-grid{
+   aspect-ratio: 5/4;
+   object-fit: contain;
+   height:250px;
+   max-width: 100%;
+}

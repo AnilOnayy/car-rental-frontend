@@ -1,18 +1,22 @@
-<div *ngIf="isLoaded==false" class="spinner-border text-primary" role="status">
-  <span class="sr-only"></span>
+
+<div *ngIf="!isLoaded" class="placeholder-glow">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card placeholder w-100">
+          <div class="card-body" style="height: 300px"></div>
+        </div>
+      </div>
+  </div>
 </div>
-<h3>Colors</h3>
-<table class="table table-hover table-bordered" *ngIf="isLoaded==true">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let color of colors">
-        <td> {{color.colorId}} </td>
-        <td> {{color.name}} </td>
-      </tr>
-  </tbody>
-</table>
+
+
+<ul class="list-group" *ngIf="isLoaded">
+  <li class="list-group-item text-center bg-dark text-light "><h5 class="mb-0">Colors</h5></li>
+  <li
+  class="list-group-item pointer-list"
+  [class.active] = "isCurrentColor(color.colorId)"
+  (click) ="setCurrentColor(color.colorId)"
+  *ngFor="let color of colors"
+  routerLink="/colors/{{color.colorId}}">{{color.name}}</li>
+
+</ul>

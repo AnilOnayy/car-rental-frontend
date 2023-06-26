@@ -1,4 +1,4 @@
-import { Car } from "../car/car";
+import { Car } from "./car";
 
 export interface Rental{
   id :number,
