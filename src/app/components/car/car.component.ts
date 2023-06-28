@@ -12,6 +12,9 @@ export class CarComponent implements OnInit{
 
   isLoaded = false;
   cars : Car[] = [];
+  carFilterText :string = "";
+  colorFilterText :string = "";
+  brandFilterText :string = "";
 
 constructor(private carService :CarService,private activatedRoute:ActivatedRoute) {
 
