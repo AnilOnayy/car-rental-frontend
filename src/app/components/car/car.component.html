@@ -18,8 +18,10 @@
   </div>
 </div>
 
-<div *ngIf="cars.length">
-  <h5>Filters</h5>
+
+
+<div *ngIf="isLoaded">
+  <h5>Filters v1</h5>
   <div class="row">
     <div class="col-4">
       <div class="mb-3">
@@ -42,20 +44,49 @@
   </div>
 </div>
 
+
+<div *ngIf="isLoaded" class="mb-3">
+  <h5>Filters v2</h5>
+
+
+  <div class="row align-items-end">
+    <div class="col-5">
+      <label for="" class="form-label">Select Color</label>
+      <select [(ngModel)]="colorId" class="form-control">
+        <option value="0" selected  >choose color</option>
+        <option *ngFor="let color of colors" [ngValue]="color.colorId"> {{color.name}} </option>
+      </select>
+    </div>
+    <div class="col-5">
+      <label for="" class="form-label">Select Brand</label>
+      <select [(ngModel)]="brandId" class="form-control">
+        <option value="0" selected >choose brand</option>
+        <option *ngFor="let brand of brands" [ngValue]="brand.brandId"> {{brand.name}} </option>
+      </select>
+    </div>
+    <div class="col-2">
+      <button (click)="onSubmit()" class="btn btn-dark">Filter</button>
+    </div>
+  </div>
+</div>
+
+
+
+
 <div class="row" *ngIf="isLoaded">
   <div class="col-md-4 mb-4" *ngFor="let car of cars | carPipe:carFilterText | colorPipe:colorFilterText | brandPipe : brandFilterText ">
     <div class="card placeholder-glow">
-      <img src="{{ car.coverImg }}" class="card-img-top car-image" alt="car-image" />
+      <img src="{{ car.coverImage }}" class="card-img-top car-image" alt="car-image" />
       <div class="card-body">
-        <h5 class="card-title">{{ car.carName }}</h5>
-        {{ car.brandName }} - {{ car.colorName }}
+        <h5 class="card-title">{{ car.description }}</h5>
+        {{ car.brand.name }} - {{ car.color.name }}
       </div>
       <div class="card-footer">
         <div class="d-flex flex-row justify-content-between">
           <div class="align-self-center">
             <small>Daily</small> / <b>{{ car.dailyPrice }}₺</b>
           </div>
-          <a routerLink="/car/{{ car.id }}" class="btn btn-dark">İncele</a>
+          <a routerLink="/car/{{ car.id }}" class="btn btn-dark">View</a>
         </div>
       </div>
     </div>

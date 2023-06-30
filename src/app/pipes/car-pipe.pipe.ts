@@ -9,7 +9,7 @@ export class CarPipePipe implements PipeTransform {
   transform(value: Car[],carNameFilter:string): Car[] {
     carNameFilter.toLowerCase();
     return  value.filter( (car) => {
-        return car.carName.toLowerCase().includes(carNameFilter);
+        return car.description.toLowerCase().includes(carNameFilter);
     });
 
   }

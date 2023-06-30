@@ -1,9 +1,12 @@
+import { Brand } from "./brand"
+import { Color } from "./color"
+
 export interface Car{
   id:number
-  carName : string
-  brandName :string
-  colorName: string
+  description :string
+  brand :Brand
+  color: Color
   modelYear: number
-  coverImg :string
+  coverImage :string
   dailyPrice: number
 }

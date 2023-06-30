@@ -1,4 +1,4 @@
 export interface ResponseModel{
-  isSuccess :boolean;
-  message :string
+  success :boolean;
+  errors :string[]
 }

@@ -1,0 +1,23 @@
+<h1>Payment Page</h1>
+
+
+
+
+<div class="row">
+  <div class="col-12 mb-2 mt-4">
+    <label for="" class="form-label">Credit Cart No</label>
+    <input type="text" [(ngModel)]="cardNumber" required credir-card class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx">
+  </div>
+  <div class="col-6">
+    <label for="" class="form-label">CVV</label>
+    <input type="text" [(ngModel)]="securityCode" required credit-card-cvc class="form-control" placeholder="xxx">
+  </div>
+  <div class="col-6">
+    <label for="" class="form-label">Expiration Date</label>
+    <input type="text" [(ngModel)]="expirationDate" required credit-card-expiration-date class="form-control" placeholder="xx/xx">
+  </div>
+
+  <button (click)="pay()" class="btn btn-success mt-4"> <b>{{(totalPrice | currency)}}</b> Pay! </button>
+
+
+</div>

@@ -1,9 +1,10 @@
 import { Car } from "./car";
+import { UserDto } from "./userDto";
 
 export interface Rental{
   id :number,
   carDetail :Car,
-  customerName:string,
+  userDetail :UserDto,
   rentDate:string,
   returnDate:string
 }

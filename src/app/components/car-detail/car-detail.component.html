@@ -1,17 +1,15 @@
 <h2 class="mb-4 fw-bold">Car Detail</h2>
 
 <div *ngIf="!dataLoaded">
-
-<div class="row placeholder-glow">
-  <div class="row">
-    <div class="placeholder col-3" style="height:300px"></div>
-    <div class="placeholder col-3" style="height:300px"></div>
-    <div class="placeholder col-3" style="height:300px"></div>
-    <div class="placeholder col-3" style="height:300px"></div>
+  <div class="row placeholder-glow">
+    <div class="row">
+      <div class="placeholder col-3" style="height: 300px"></div>
+      <div class="placeholder col-3" style="height: 300px"></div>
+      <div class="placeholder col-3" style="height: 300px"></div>
+      <div class="placeholder col-3" style="height: 300px"></div>
+    </div>
   </div>
 
-</div>
-
   <p class="placeholder-glow">
     <span class="placeholder col-4"></span>
   </p>
@@ -28,43 +26,60 @@
   </p>
 </div>
 
-<div >
+<div>
   <div class="row" *ngIf="photosLoaded">
-  <h5 class="pb-1">Car Images</h5>
-  <hr>
+    <h5 class="pb-1">Car Images</h5>
+    <hr />
     <div class="col-4" *ngFor="let photo of photos">
-      <img src="{{photo.imagePath}} " class="detail-photo-grid" alt="Car">
+      <img src="{{ photo.imagePath }} " class="detail-photo-grid" alt="Car" />
     </div>
   </div>
   <div class="row" *ngIf="dataLoaded">
     <h5 class="pb-1">Car Detail</h5>
-    <hr>
+    <hr />
     <div class="col-md-5">
-
       <table>
         <tr>
           <td>Car Name</td>
-          <td> : <b> {{carDetails.carName}} </b></td>
+          <td>
+            : <b> {{ carDetails.description }} </b>
+          </td>
         </tr>
         <tr>
           <td>Color</td>
-          <td> : <b> {{carDetails.colorName}} </b></td>
+          <td>
+            : <b> {{ carDetails.color.name }} </b>
+          </td>
         </tr>
         <tr>
           <td>Brand</td>
-          <td> : <b> {{carDetails.brandName}} </b></td>
+          <td>
+            : <b> {{ carDetails.brand.name }} </b>
+          </td>
         </tr>
         <tr>
           <td>Model Year</td>
-          <td> : <b> {{carDetails.modelYear}} </b></td>
+          <td>
+            : <b> {{ carDetails.modelYear }} </b>
+          </td>
         </tr>
       </table>
     </div>
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="" class="form-label">Start Date</label>
+          <input type="date" [(ngModel)]="rentDate" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="" class="form-label">Return Date</label>
+          <input type="date" [(ngModel)]="returnDate" class="form-control">
+        </div>
+        <div class="col-12 mt-3">
+          <button (click)="rentCar()" class="btn btn-outline-success w-100">Rent</button>
+        </div>
+      </div>
+      </div>
 
   </div>
-
-
 </div>
-
-
-

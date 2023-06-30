@@ -30,4 +30,10 @@ getCarsByBrand(brandId:number) : Observable<ListResponseModel<Car>>
   let apiPath=  this.apiUrl + "/cars/getbybrand?brandId="+brandId;
   return this.httpClient.get<ListResponseModel<Car>>(apiPath);
 }
+
+getCarsByFilter(brandId:number,colorId:number)
+{
+  let apiPath=  this.apiUrl + `/cars/GetByColorAndBrand?brandId=${brandId}&colorId=${colorId}`;
+  return this.httpClient.get<ListResponseModel<Car>>(apiPath);
+}
 }
