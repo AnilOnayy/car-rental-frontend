@@ -55,6 +55,9 @@ export class CarDetailComponent implements OnInit{
 
   rentCar()
   {
+    let s = Date.parse(this.rentDate);
+    let e = Date.parse(this.returnDate);
+
     if(this.rentDate =="")
     {
       this.toastrService.error("Please select a start date!");
@@ -62,6 +65,10 @@ export class CarDetailComponent implements OnInit{
     else if(this.returnDate == "")
     {
       this.toastrService.error("Please select a return date!");
+    }
+    else if( s > e)
+    {
+      this.toastrService.error("Return date must greater than rent date!");
     }
     else{
       this.carDetailService.rentCar(this.rentDate,this.returnDate,this.carDetails.id).subscribe(
