@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
+import { ErrorResponseModel } from 'src/app/models/errorResponseModel';
 import { BrandService } from 'src/app/services/brand.service';
 
 @Component({
@@ -13,7 +15,10 @@ export class BrandComponent implements OnInit{
   brands : Brand[] = [];
   currentBrandId : number;
 
-  constructor(private brandService:BrandService) {
+  constructor(
+    private brandService:BrandService,
+    private toastrService :ToastrService
+    ) {
 
   }
 
@@ -35,5 +40,19 @@ export class BrandComponent implements OnInit{
 setCurrentBrand(BrandId:number)
 {
   this.currentBrandId = BrandId;
+}
+
+
+removeBrand(brand:Brand)
+{
+  this.brandService.removeBrand(brand).subscribe(
+    res => {
+     this.brands.splice( this.brands.indexOf(brand)  ,1);
+    },
+    error => {
+      let err : ErrorResponseModel = error;
+      this.toastrService.error(err.error.message,err.error.title )
+    }
+  )
 }
 }

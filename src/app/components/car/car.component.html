@@ -54,14 +54,14 @@
       <label for="" class="form-label">Select Color</label>
       <select [(ngModel)]="colorId" class="form-control">
         <option value="0" selected  >choose color</option>
-        <option *ngFor="let color of colors" [ngValue]="color.colorId"> {{color.name}} </option>
+        <option *ngFor="let color of colors" [ngValue]="color.colorId"> {{color.colorName}} </option>
       </select>
     </div>
     <div class="col-5">
       <label for="" class="form-label">Select Brand</label>
       <select [(ngModel)]="brandId" class="form-control">
         <option value="0" selected >choose brand</option>
-        <option *ngFor="let brand of brands" [ngValue]="brand.brandId"> {{brand.name}} </option>
+        <option *ngFor="let brand of brands" [ngValue]="brand.brandId"> {{brand.brandName}} </option>
       </select>
     </div>
     <div class="col-2">
@@ -79,7 +79,7 @@
       <img src="{{ car.coverImage }}" class="card-img-top car-image" alt="car-image" />
       <div class="card-body">
         <h5 class="card-title">{{ car.description }}</h5>
-        {{ car.brand.name }} - {{ car.color.name }}
+        {{ car.brand.brandName }} - {{ car.color.colorName }}
       </div>
       <div class="card-footer">
         <div class="d-flex flex-row justify-content-between">

@@ -4,10 +4,18 @@ import { CarComponent } from './components/car/car.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorEditComponent } from './components/color-edit/color-edit.component';
+import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 
 const routes: Routes = [
   {path:"",component : CarComponent},
+  {path:"brands/add",component : BrandAddComponent},
+  {path:"brands/edit/:brandId",component : BrandEditComponent},
   {path:"brands/:brandId",component : CarComponent},
+  {path:"colors/add",component : ColorAddComponent},
+  {path:"colors/edit/:colorId",component : ColorEditComponent},
   {path:"colors/:colorId",component : CarComponent},
   {path:"car/:carId",component : CarDetailComponent},
   {path:"payment/:rentalId",component : PaymentComponent},

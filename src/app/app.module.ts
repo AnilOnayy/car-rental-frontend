@@ -20,6 +20,11 @@ import { CarFilterComponent } from './components/car-filter/car-filter.component
 import { ToastrModule } from 'ngx-toastr';
 import { PaymentComponent } from './components/payment/payment.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { AddCarComponent } from './components/add-car/add-car.component';
+import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
+import { ColorEditComponent } from './components/color-edit/color-edit.component';
 
 
 @NgModule({
@@ -37,7 +42,12 @@ import { PaymentSuccessComponent } from './components/payment-success/payment-su
     ColorPipePipe,
     CarFilterComponent,
     PaymentComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    AddCarComponent,
+    BrandEditComponent,
+    ColorEditComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,8 @@ import { PaymentSuccessComponent } from './components/payment-success/payment-su
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      positionClass :"toast-bottom-right"
+      positionClass :"toast-top-right",
+      newestOnTop : true
     })
     ,
     BrowserAnimationsModule

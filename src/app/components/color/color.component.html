@@ -11,12 +11,35 @@
 
 
 <ul class="list-group" *ngIf="isLoaded">
+  <button routerLink="/colors/add" class="btn btn-outline-success mb-1"> Add New Color</button>
+
   <li class="list-group-item text-center bg-dark text-light "><h5 class="mb-0">Colors</h5></li>
   <li
-  class="list-group-item pointer-list"
+  class="list-group-item pointer-list d-flex justify-content-between"
   [class.active] = "isCurrentColor(color.colorId)"
   (click) ="setCurrentColor(color.colorId)"
   *ngFor="let color of colors"
-  routerLink="/colors/{{color.colorId}}">{{color.name}}</li>
+ >
+
+
+  <div
+  class="w-100"
+  routerLink="/colors/{{color.colorId}}"
+  (click) ="setCurrentColor(color.colorId)"
+  >
+    {{color.colorName}}
+  </div>
+
+  <div>
+    <a class="btn btn-warning me-1"  routerLink="/colors/edit/{{color.colorId}}">
+      <i class="bi bi-pen"></i>
+    </a>
+  </div>
+  <div>
+    <a class="btn btn-danger" (click)="removeColor(color)">
+      <i class="bi bi-trash"></i>
+    </a>
+  </div>
+</li>
 
 </ul>

@@ -10,7 +10,7 @@ export class ColorPipePipe implements PipeTransform {
     colorName.toLowerCase();
 
     return  value.filter( (car) => {
-        return car.color.name.toLowerCase().includes(colorName);
+        return car.color.colorName.toLowerCase().includes(colorName);
     });
   }
 

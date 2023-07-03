@@ -29,6 +29,7 @@
               "src/styles.css",
               "src/app/app.component.css",
               "./node_modules/ngx-toastr/toastr.css",
+              "./node_modules/bootstrap-icons/font/bootstrap-icons.css"
 
             ],
             "scripts": []

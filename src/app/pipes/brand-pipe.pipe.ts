@@ -10,7 +10,7 @@ export class BrandPipePipe implements PipeTransform {
     brandName.toLowerCase();
 
     return  value.filter( (car) => {
-        return car.brand.name.toLowerCase().includes(brandName);
+        return car.brand.brandName.toLowerCase().includes(brandName);
     });
   }
 
