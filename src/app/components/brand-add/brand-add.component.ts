@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-brand-add',
@@ -11,8 +13,10 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandAddComponent implements OnInit {
 
   addBrandForm : FormGroup;
+  brands :Brand[];
 
   constructor(
+    private datasharingService : DataSharingService,
     private formBuilder :FormBuilder,
     private toastrService :ToastrService,
     private brandService : BrandService
@@ -21,6 +25,10 @@ export class BrandAddComponent implements OnInit {
 
 ngOnInit(): void {
   this.initForm();
+
+    this.datasharingService.brands$.subscribe(brands => {
+    this.brands = brands;
+  })
 }
 
 initForm()
@@ -38,6 +46,8 @@ onSubmit()
 
     this.brandService.addBrand(brandObject).subscribe(res => {
       this.toastrService.success(res.message,res.title);
+      this.brands.push(res.data);
+      this.datasharingService.setBrands(this.brands);
       this.addBrandForm.reset();
     })
   }

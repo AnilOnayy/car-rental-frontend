@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ErrorResponseModel } from 'src/app/models/errorResponseModel';
 import { ColorService } from 'src/app/services/color.service';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-color-edit',
@@ -12,11 +13,15 @@ import { ColorService } from 'src/app/services/color.service';
   styleUrls: ['./color-edit.component.css']
 })
 export class ColorEditComponent {
+
+
   editColorForm : FormGroup;
   currentColor : Color;
   colorId : number;
+  colors :Color[];
 
   constructor(
+    private dataSharingService:DataSharingService,
     private formBuilder :FormBuilder,
     private toastrService :ToastrService,
     private colorService : ColorService,
@@ -32,6 +37,10 @@ export class ColorEditComponent {
       {
         this.getColor(params["colorId"]);
       }
+    })
+
+    this.dataSharingService.colors$.subscribe(colors => {
+      this.colors = colors;
     })
 
   }
@@ -68,6 +77,10 @@ export class ColorEditComponent {
 
       this.colorService.updateColor(form).subscribe(res => {
         this.toastrService.success(res.message,res.title)
+
+        this.colors[ this.colors.findIndex(x => x.colorId == res.data.colorId)] = form;
+        this.dataSharingService.setColors(this.colors);
+
       })
     }
 

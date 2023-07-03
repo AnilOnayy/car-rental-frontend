@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { ErrorResponseModel } from 'src/app/models/errorResponseModel';
 import { BrandService } from 'src/app/services/brand.service';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-brand-edit',
@@ -15,10 +16,12 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandEditComponent implements OnInit {
 
   formGroup : FormGroup;
+  brands  : Brand[];
   currentBrand : Brand = {brandId:0,brandName : ""};
   brandId : number;
 
   constructor(
+    private dataSharingService :DataSharingService,
     private formBuilder :FormBuilder,
     private toastrService :ToastrService,
     private brandService : BrandService,
@@ -36,6 +39,10 @@ export class BrandEditComponent implements OnInit {
     })
 
     this.initializeForm();
+
+    this.dataSharingService.brands$.subscribe(brands => {
+      this.brands = brands;
+    })
 
   }
 
@@ -72,6 +79,9 @@ export class BrandEditComponent implements OnInit {
 
       this.brandService.editBrand(form).subscribe(res => {
         this.toastrService.success(res.message,res.title)
+
+        this.brands[this.brands.findIndex(x => x.brandId==res.data.brandId)] = form;
+        this.dataSharingService.setBrands(this.brands);
 
       })
     }

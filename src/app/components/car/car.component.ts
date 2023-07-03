@@ -7,6 +7,7 @@ import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-car',
@@ -31,6 +32,7 @@ export class CarComponent implements OnInit{
   brandId:number = 0;
   colorId:number = 0;
 constructor(
+  private dataSharingService :DataSharingService,
   private carService :CarService,
   private activatedRoute:ActivatedRoute,
   private colorService:ColorService,
@@ -88,15 +90,16 @@ getCarsByBrand(brandId:number)
 
 listColors()
 {
-  this.colorService.getColors().subscribe(res => {
-    this.colors = res.data;
+  this.dataSharingService.colors$.subscribe(colors => {
+    this.colors = colors
   })
 }
 
 listBrands()
 {
-  this.brandService.getBrands().subscribe(res => {
-    this.brands = res.data;
+
+  this.dataSharingService.brands$.subscribe(brands => {
+    this.brands = brands
   })
 }
 

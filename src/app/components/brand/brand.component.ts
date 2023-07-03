@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { ErrorResponseModel } from 'src/app/models/errorResponseModel';
 import { BrandService } from 'src/app/services/brand.service';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-brand',
@@ -16,20 +17,26 @@ export class BrandComponent implements OnInit{
   currentBrandId : number;
 
   constructor(
-    private brandService:BrandService,
+    private dataSharingService:DataSharingService,
+    private brandService :BrandService,
     private toastrService :ToastrService
     ) {
 
   }
 
   ngOnInit(): void {
-    this.brandService.getBrands().subscribe(response => {
-      this.brands =response.data;
-      this.isLoaded= true;
-    })
+   this.getBrands();
   }
 
 
+
+  getBrands()
+  {
+    this.dataSharingService.brands$.subscribe(brands => {
+      this.brands = brands
+      this.isLoaded = true;
+    })
+  }
 
 
   isCurrentBrand(BrandId:number)
@@ -48,6 +55,7 @@ removeBrand(brand:Brand)
   this.brandService.removeBrand(brand).subscribe(
     res => {
      this.brands.splice( this.brands.indexOf(brand)  ,1);
+     this.dataSharingService.setBrands(this.brands);
     },
     error => {
       let err : ErrorResponseModel = error;
