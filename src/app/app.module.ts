@@ -22,9 +22,9 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
-import { AddCarComponent } from './components/add-car/add-car.component';
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 import { ColorEditComponent } from './components/color-edit/color-edit.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
 
 
 @NgModule({
@@ -45,9 +45,9 @@ import { ColorEditComponent } from './components/color-edit/color-edit.component
     PaymentSuccessComponent,
     BrandAddComponent,
     ColorAddComponent,
-    AddCarComponent,
     BrandEditComponent,
-    ColorEditComponent
+    ColorEditComponent,
+    CarAddComponent
   ],
   imports: [
     BrowserModule,

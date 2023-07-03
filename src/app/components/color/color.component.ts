@@ -57,7 +57,7 @@ removeColor(color:Color)
   ,
   error => {
     let err  : ErrorResponseModel = error;
-    this.toastrService.error(err.error.message,err.error.message);
+    this.toastrService.error(err.error.message,err.error.title);
   }
   )
 }

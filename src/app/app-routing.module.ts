@@ -8,6 +8,7 @@ import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ColorEditComponent } from './components/color-edit/color-edit.component';
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
 
 const routes: Routes = [
   {path:"",component : CarComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:"colors/add",component : ColorAddComponent},
   {path:"colors/edit/:colorId",component : ColorEditComponent},
   {path:"colors/:colorId",component : CarComponent},
-  {path:"car/:carId",component : CarDetailComponent},
+  {path:"cars/add",component : CarAddComponent},
+  {path:"cars/:carId",component : CarDetailComponent},
   {path:"payment/:rentalId",component : PaymentComponent},
   {path:"payment-success",component : PaymentSuccessComponent},
 
