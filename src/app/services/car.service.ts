@@ -16,7 +16,7 @@ export class CarService {
 
   constructor(private httpClient :HttpClient) { }
 
-add(addCarDto :  CarAddDto) : Observable<SingleResponseModel<Car>>
+add(addCarDto:any) : Observable<SingleResponseModel<Car>>
 {
   let requestPath =  this.apiUrl + "cars/add";
   return this.httpClient.post<SingleResponseModel<Car>>(requestPath,addCarDto);
