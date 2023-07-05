@@ -1,4 +1,4 @@
 export interface CarImage{
-    imageId :number,
+    id :number,
     imagePath:string
 }

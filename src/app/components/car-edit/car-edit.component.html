@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title mt-2">Add Brand</h4>
+        <h4 class="card-title mt-2">Edit Brand</h4>
       </div>
       <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
 
@@ -13,16 +13,14 @@
           </div>
           <div class="form-group mt-2">
             <label for="brandId" class="form-label">Brand</label>
-            <select class="form-control" id="brandId"  formControlName="brandId" >
-              <option  value="0"  selected>Please choose brand</option>
-              <option  *ngFor="let brand of brands" [ngValue]="brand.brandId"> {{brand.brandName}} </option>
+            <select class="form-control" id="brandId"   formControlName="brandId" >
+              <option  *ngFor="let brand of brands"    value="{{brand.brandId}}"> {{brand.brandName}} </option>
             </select>
           </div>
           <div class="form-group mt-2">
             <label for="colorId" class="form-label">Color</label>
             <select class="form-control" id="colorId"  formControlName="colorId" >
-              <option  value="0"  selected>Please choose brand</option>
-              <option  *ngFor="let color of colors" [ngValue]="color.colorId"> {{color.colorName}} </option>
+              <option  *ngFor="let color of colors" value="{{color.colorId}}"> {{color.colorName}} </option>
             </select>
           </div>
           <div class="form-group mt-2">
@@ -34,14 +32,37 @@
             <input type="number" class="form-control" id="dailyPrice" formControlName="dailyPrice" >
           </div>
 
+
           <div class="form-group mt-2">
             <label for="productPhotos" class="form-label">Product Photos</label>
-            <input (change) ="uploadFile($event)" type="file" multiple class="form-control"  accept=".png,.jpg,.jpeg,.webp"
-            >
+            <input type="file" #fileInput (change) ="uploadFile($event)"  multiple class="form-control mb-2"  accept=".png,.jpg,.jpeg,.webp">
+
+            <div class="" *ngIf="carImagesLoaded">
+
+              <div class="photos-grid  row" *ngIf="carImages.length>0">
+                <div class="col-4" *ngFor="let photo of carImages">
+                  <img src="{{ photo.imagePath }} " class="detail-photo-grid" alt="Car" />
+                  <div *ngIf="photo.id!=0">
+                    <a class="btn btn-outline-danger w-100 mt-2" (click)="removeCarImage(photo)">Delete Image</a>
+                  </div>
+
+                </div>
+              </div>
+
+              <div *ngIf="carImages.length<=0">
+                <div class="col-4">
+                  <img src="{{ defaultPhoto }}" class="detail-photo-grid" alt="Car" />
+                </div>
+              </div>
+
+
+
+            </div>
           </div>
       </div>
-      <div class="card-footer">
-        <button class="btn btn-success">Add New Car</button>
+      <div class="card-footer d-flex justify-content-end">
+        <button class="btn btn-outline-danger me-2" type="button" (click)="removeCar()">Delete Car</button>
+        <button class="btn btn-success">Update Car</button>
       </div>
     </form>
 

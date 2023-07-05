@@ -4,10 +4,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Brand } from 'src/app/models/brand';
-import { CarImage } from 'src/app/models/car-image';
 import { Color } from 'src/app/models/color';
 import { ErrorResponseModel } from 'src/app/models/errorResponseModel';
-import { CarImageService } from 'src/app/services/car-image-service';
+import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
 

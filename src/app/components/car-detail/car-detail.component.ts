@@ -3,8 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
-import { CarDetailService } from 'src/app/services/car-detail.service';
 import { ErrorResponseModel } from 'src/app/models/errorResponseModel';
+import { CarImageService } from 'src/app/services/car-image.service';
+import { CarService } from 'src/app/services/car.service';
+import { Enviroment } from 'src/environments/enviroment';
 
 @Component({
   selector: 'app-car-detail',
@@ -16,7 +18,12 @@ export class CarDetailComponent implements OnInit{
 
   dataLoaded :boolean = false;
   photosLoaded :boolean=false;
-  constructor(private carDetailService:CarDetailService,
+
+  defaultPhoto :string = Enviroment.logo;
+
+  constructor(
+    private carService:CarService,
+    private carImageService : CarImageService,
     private activatedRoute:ActivatedRoute,
     private toastrService:ToastrService,
     private router:Router
@@ -32,26 +39,42 @@ export class CarDetailComponent implements OnInit{
 
   ngOnInit(): void {
       this.activatedRoute.params.subscribe(params => {
-        this.getCar(params["carId"]);
-        this.getCarPhotos(params["carId"]);
+
+        if( !isNaN(params["carId"]) )
+        {
+          this.getCar(params["carId"]);
+          this.getCarPhotos(params["carId"]);
+        }
+        else{
+          this.router.navigateByUrl("/");
+        }
+
       })
   }
 
 
   getCar(carId:number){
-    this.carDetailService.getCar(carId).subscribe(res => {
+    this.carService.getCar(carId).subscribe(res => {
       this.carDetails = res.data;
       this.dataLoaded=true;
-    });
+    },
+    error => {
+      let err :ErrorResponseModel = error;
+      this.toastrService.error(err.error.message,err.error.title);
+      this.router.navigateByUrl("/");
+    }
+    );
   }
 
   getCarPhotos(carId:number)
   {
-    this.carDetailService.getCarImages(carId).subscribe(res => {
+    this.carImageService.getImagesByCar(carId).subscribe(res => {
       this.photos = res.data;
       this.photosLoaded=true;
     });
   }
+
+
 
   rentCar()
   {
@@ -71,7 +94,7 @@ export class CarDetailComponent implements OnInit{
       this.toastrService.error("Return date must greater than rent date!");
     }
     else{
-      this.carDetailService.rentCar(this.rentDate,this.returnDate,this.carDetails.id).subscribe(
+      this.carService.rentCar(this.rentDate,this.returnDate,this.carDetails.id).subscribe(
         res => {
           this.router.navigateByUrl(`/payment/${res.data.id}`);
       },
@@ -85,4 +108,6 @@ export class CarDetailComponent implements OnInit{
     }
 
   }
+
+
 }

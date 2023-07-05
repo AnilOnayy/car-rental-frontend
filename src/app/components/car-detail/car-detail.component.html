@@ -1,5 +1,7 @@
 <h2 class="mb-4 fw-bold">Car Detail</h2>
 
+
+
 <div *ngIf="!dataLoaded">
   <div class="row placeholder-glow">
     <div class="row">
@@ -27,13 +29,25 @@
 </div>
 
 <div>
-  <div class="row" *ngIf="photosLoaded">
+  <div class="" *ngIf="photosLoaded">
     <h5 class="pb-1">Car Images</h5>
     <hr />
-    <div class="col-4" *ngFor="let photo of photos">
-      <img src="{{ photo.imagePath }} " class="detail-photo-grid" alt="Car" />
+    <div class="photos-grid  row" *ngIf="photos.length>0">
+      <div class="col-4" *ngFor="let photo of photos">
+        <img src="{{ photo.imagePath }} " class="detail-photo-grid" alt="Car" />
+      </div>
     </div>
+
+    <div *ngIf="photos.length<=0">
+      <div class="col-4">
+        <img src="{{ defaultPhoto }}" class="detail-photo-grid" alt="Car" />
+      </div>
+    </div>
+
+
+
   </div>
+
   <div class="row" *ngIf="dataLoaded">
     <h5 class="pb-1">Car Detail</h5>
     <hr />
@@ -79,6 +93,10 @@
           <button (click)="rentCar()" class="btn btn-outline-success w-100">Rent</button>
         </div>
       </div>
+      </div>
+
+      <div class="col-12">
+        <a class="btn btn-outline-warning w-100 mt-3" routerLink="/cars/edit/{{carDetails.id}}">Edit Car</a>
       </div>
 
   </div>

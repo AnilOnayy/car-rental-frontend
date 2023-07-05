@@ -25,6 +25,7 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 import { ColorEditComponent } from './components/color-edit/color-edit.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     ColorAddComponent,
     BrandEditComponent,
     ColorEditComponent,
-    CarAddComponent
+    CarAddComponent,
+    CarEditComponent
   ],
   imports: [
     BrowserModule,
