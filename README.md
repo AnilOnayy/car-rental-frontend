@@ -1,6 +1,11 @@
 # CarRentalFrontend
 
 ![alt text](car-rental-images/1.png)
+![alt text](car-rental-images/2.png)
+![alt text](car-rental-images/3.png)
+![alt text](car-rental-images/4.png)
+![alt text](car-rental-images/5.png)
+![alt text](car-rental-images/6.png)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
