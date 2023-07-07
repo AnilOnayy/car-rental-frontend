@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title mt-2">Add Brand</h4>
+        <h4 class="card-title mt-2">Add Car</h4>
       </div>
       <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
 
@@ -19,7 +19,7 @@
             </select>
           </div>
           <div class="form-group mt-2">
-            <label for="colorId" class="form-label">Color</label>
+            <label for="co64 lorId" class="form-label">Color</label>
             <select class="form-control" id="colorId"  formControlName="colorId" >
               <option  value="0"  selected>Please choose brand</option>
               <option  *ngFor="let color of colors" [ngValue]="color.colorId"> {{color.colorName}} </option>
