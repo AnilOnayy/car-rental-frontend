@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ErrorResponseModel } from 'src/app/models/errorResponseModel';
+import { AuthService } from 'src/app/services/auth.service';
 import { ColorService } from 'src/app/services/color.service';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
 
@@ -17,17 +18,21 @@ export class ColorComponent implements OnInit {
   isLoaded = false;
   colors : Color[] = [];
   currentColorId:number;
+  isAuthenticated :Boolean;
 
 constructor(
   private dataSharingService :DataSharingService,
   private colorService : ColorService,
-  private toastrService : ToastrService
+  private toastrService : ToastrService,
+  private authService : AuthService
   ) {
 
 }
 
 ngOnInit(): void {
   this.getColors();
+
+  this.isAuthenticated = this.authService.isAuthenticated();
 }
 
 getColors()

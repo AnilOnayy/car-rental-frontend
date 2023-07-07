@@ -34,7 +34,7 @@
       <i class="bi bi-pen"></i>
     </a>
   </div>
-  <div>
+  <div *ngIf="isAuthenticated">
     <a class="btn btn-danger btn-sm" (click)="removeColor(color)">
       <i class="bi bi-trash"></i>
     </a>

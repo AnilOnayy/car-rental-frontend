@@ -28,12 +28,12 @@
     {{brand.brandName}}
   </div>
 
-  <div>
+  <div >
     <a class="btn btn-warning btn-sm me-1"  routerLink="/brands/edit/{{brand.brandId}}">
       <i class="bi bi-pen"></i>
     </a>
   </div>
-  <div>
+  <div *ngIf="isAuthenticated">
     <a class="btn btn-danger btn-sm" (click)="removeBrand(brand)">
       <i class="bi bi-trash"></i>
     </a>
